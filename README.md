@@ -1,6 +1,8 @@
 # SimpleSlack
 
 [![Build Status](https://travis-ci.org/aktsk/simple_slack.svg?branch=master)](https://travis-ci.org/aktsk/simple_slack)
+[![Hex.pm](https://img.shields.io/hexpm/v/simple_slack.svg?maxAge=2592000)](https://hex.pm/packages/simple_slack)
+[![Hex.pm](https://img.shields.io/hexpm/l/simple_slack.svg?maxAge=2592000)](https://github.com/aktsk/simple_slack/blob/master/LICENSE)
 
 Very simple slack client using incoming webhooks.
 
