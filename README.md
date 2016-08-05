@@ -1,5 +1,7 @@
 # SimpleSlack
 
+[![Build Status](https://travis-ci.org/aktsk/simple_slack.svg?branch=master)](https://travis-ci.org/aktsk/simple_slack)
+
 Very simple slack client using incoming webhooks.
 
 
