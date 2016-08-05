@@ -11,3 +11,6 @@ sudo: false
 
 script:
   - mix compile --warnings-as-errors
+
+notifications:
+  email: false
