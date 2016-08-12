@@ -8,20 +8,20 @@ defmodule SimpleSlack do
   end
 
   @spec notify_text(binary, binary, map) :: :ok
-  def notify_text(token, text, opts \\ %{}) do
+  def notify_text(token, text, opts \\ %{}) when is_binary(token) and is_binary(text) and is_map(opts) do
     payload = Map.put(opts, :text, text)
     notify(token, payload)
   end
 
   # TODO(seizans): Retry if post fails
   @spec notify(binary, map) :: :ok
-  def notify(token, payload) do
+  def notify(token, payload) when is_binary(token) and is_map(payload) do
     {:ok, _pid} = Task.Supervisor.start_child(@task_supervisor, fn -> sync_notify(token, payload) end)
     :ok
   end
 
   @spec sync_notify(binary, map) :: :ok | {:error, HTTPoison.Response.t} | {:error, any}
-  def sync_notify(token, payload) do
+  def sync_notify(token, payload) when is_binary(token) and is_map(payload) do
     uri = %URI{scheme: "https",
                host: "hooks.slack.com",
                path: Path.join("/services", token)}
