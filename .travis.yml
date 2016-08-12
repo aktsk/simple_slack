@@ -11,6 +11,7 @@ sudo: false
 
 script:
   - mix compile --warnings-as-errors
+  - mix credo
 
 notifications:
   email: false
