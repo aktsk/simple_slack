@@ -38,7 +38,7 @@ SimpleSlack.notify(token, %{text: "Tako is a sushi too.",
 
 Equivalent to `notify(token, Map.put(opts, :text, text))`.
 
-### post(token, payload)
+### sync_notify(token, payload)
 
 Equivalent to `notify(token, payload)` but blocks and returns `:ok` or `{:error, reason}`.
 

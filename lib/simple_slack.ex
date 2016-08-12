@@ -16,12 +16,12 @@ defmodule SimpleSlack do
   # TODO(seizans): Retry if post fails
   @spec notify(binary, map) :: :ok
   def notify(token, payload) do
-    {:ok, _pid} = Task.Supervisor.start_child(@task_supervisor, fn -> post(token, payload) end)
+    {:ok, _pid} = Task.Supervisor.start_child(@task_supervisor, fn -> sync_notify(token, payload) end)
     :ok
   end
 
-  @spec post(binary, map) :: :ok | {:error, HTTPoison.Response.t} | {:error, any}
-  def post(token, payload) do
+  @spec sync_notify(binary, map) :: :ok | {:error, HTTPoison.Response.t} | {:error, any}
+  def sync_notify(token, payload) do
     uri = %URI{scheme: "https",
                host: "hooks.slack.com",
                path: Path.join("/services", token)}
