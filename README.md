@@ -24,23 +24,19 @@ iex> token = "T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
 iex> SimpleSlack.notify_text(token, "Ika is a sushi.")
 ```
 
-### notify(token, payload)
-
-Example:
+Other examples:
 
 ```
-SimpleSlack.notify(token, %{text: "Tako is a sushi too.",
+SimpleSlack.notify(token, %{text: "Maguro is a sushi too.",
                             username: "sushi-bot",
                             icon_emoji: ":sushi:"})
+
+SimpleSlack.notify(token, %{text: "Tako is a sushi too.",
+                            attachments: [%{author_name: "sushi-taisho",
+                                            fallback: "Required plain-text summary of the attachment.",
+                                            title: "sushi-attachment",
+                                            text: "Optional text"}]})
 ```
-
-### notify_text(token, text, opts \\\\ %{})
-
-Equivalent to `notify(token, Map.put(opts, :text, text))`.
-
-### sync_notify(token, payload)
-
-Equivalent to `notify(token, payload)` but blocks and returns `:ok` or `{:error, reason}`.
 
 
 ## For more details about Slack API
