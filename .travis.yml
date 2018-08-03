@@ -9,6 +9,7 @@ sudo: false
 
 script:
   - mix compile --warnings-as-errors
+  - mix format --check-formatted
   - mix credo
 
 notifications:

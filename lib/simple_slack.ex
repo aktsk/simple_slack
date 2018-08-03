@@ -14,7 +14,7 @@ defmodule SimpleSlack do
   @task_supervisor SimpleSlack.Task.Supervisor
 
   def start(_type, _args) do
-    Task.Supervisor.start_link([name: @task_supervisor])
+    Task.Supervisor.start_link(name: @task_supervisor)
   end
 
   @doc "Equivalent to `notify(token, Map.put(opts, :text, text))`."
@@ -36,16 +36,17 @@ defmodule SimpleSlack do
   end
 
   @doc "Equivalent to `notify(token, payload)` but blocks and returns `:ok` or `{:error, reason}`."
-  @spec sync_notify(binary, map) :: :ok | {:error, HTTPoison.Response.t} | {:error, any}
+  @spec sync_notify(binary, map) :: :ok | {:error, HTTPoison.Response.t()} | {:error, any}
   def sync_notify(token, payload) when is_binary(token) and is_map(payload) do
-    uri = %URI{scheme: "https",
-               host: "hooks.slack.com",
-               path: Path.join("/services", token)}
+    uri = %URI{scheme: "https", host: "hooks.slack.com", path: Path.join("/services", token)}
+
     case HTTPoison.post(uri, Poison.encode!(payload)) do
       {:ok, %HTTPoison.Response{status_code: 200}} ->
         :ok
+
       {:ok, %HTTPoison.Response{} = response} ->
         {:error, response}
+
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
     end
