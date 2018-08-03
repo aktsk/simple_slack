@@ -4,7 +4,7 @@ defmodule SimpleSlack.Mixfile do
   def project do
     [
       app: :simple_slack,
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.7.1",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
